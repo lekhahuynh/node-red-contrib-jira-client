@@ -1,0 +1,41 @@
+{
+  "name": "node-red-contrib-jira-client",
+  "version": "0.0.1",
+  "description": "Collection of node-red nodes to interact with Jira",
+  "license": "Apache-2.0",
+  "node-red": {
+    "nodes": {
+      "jiraCredentials": "src/jira-credentials.js",
+      "jiraFindIssue": "src/jira-find-issue.js"
+    }
+  },
+  "keywords": [
+    "node-red",
+    "excelerum",
+    "jira-client",
+    "jira"
+  ],
+  "dependencies": {
+    "jira-client": "~8.2.2"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.1.1",
+    "targz": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js"
+  },
+  "author": "Excelerum Labs",
+  "maintainers": [
+    {
+      "name": "Le Kha Huynh",
+      "email": "lekhahuynh09@gmail.com"
+    }
+  ],
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/excelerum/node-red-contrib-jira-client"
+  }
+}
