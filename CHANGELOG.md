@@ -1,4 +1,4 @@
-# node-red-contrib-nextcloud changelog
+# node-red-contrib-jira-client changelog
 
 ## 0.0.1
 
