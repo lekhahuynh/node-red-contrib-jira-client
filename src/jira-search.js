@@ -1,10 +1,17 @@
 const JiraApi = require("jira-client");
 
 module.exports = function (RED) {
-  function JiraFindIssue(config) {
+  function JiraSearch(config) {
     RED.nodes.createNode(this, config);
     this.server = RED.nodes.getNode(config.server);
-    this.issueNumber = config.issueNumber;
+    const { jiraQuery, startAt, maxResults, fields, expand } = config;
+    this.jiraQuery = jiraQuery;
+    this.options = {
+      startAt,
+      maxResults,
+      fields,
+      expand,
+    };
     const node = this;
 
     node.on("input", (msg) => {
@@ -17,9 +24,11 @@ module.exports = function (RED) {
         apiVersion: node.server.apiVersion,
         strictSSL: true,
       });
-      const issueNumber = this.issueNumber ? this.issueNumber : msg.issueNumber;
+      const jiraQuery = this.jiraQuery ? this.jiraQuery : msg.jiraQuery;
+      const options = this.options ? this.options : msg.options;
+
       jira
-        .findIssue(issueNumber)
+        .searchJira(jiraQuery, options)
         .then((issue) => {
           node.send({
             ...msg,
@@ -32,5 +41,5 @@ module.exports = function (RED) {
     });
   }
 
-  RED.nodes.registerType("jira-find-issue", JiraFindIssue);
+  RED.nodes.registerType("jira-search", JiraSearch);
 };

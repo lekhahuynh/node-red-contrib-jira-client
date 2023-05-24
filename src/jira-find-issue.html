@@ -20,10 +20,10 @@
 </script>
 
 <script type="text/x-red" data-template-name="jira-find-issue">
-    <div class="form-row">
-        <label for="node-input-wname"><i class="fa fa-tag"></i> Name</label>
-        <input type="text" id="node-input-wname" placeholder="Name">
-    </div>
+  <div class="form-row">
+      <label for="node-input-wname"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-wname" placeholder="Name">
+  </div>
   <div class="form-row">
      	<label for="node-input-server"><i class="fa fa-server"></i> Server</label>
      	<input type="text" id="node-input-server">
@@ -39,33 +39,15 @@
 
   <h3>Inputs</h3>
      <dl class="message-properties">
-         <dt>payload
-             <span class="property-type">any</span>
-         </dt>
-         <dd> Incoming message triggers receiving a list containing a directory content. Any payload
-         is possible. </dd>
-         <dt class="optional">issueNumber <span class="property-type">string</span></dt>
-         <dd> A directory can be specified on incoming message or in nodes properties. Downloads the
-         content of the users root directory if not set.</dd>
+         <dt class="">issueNumber <span class="property-type">string</span></dt>
+         <dd> The issue number to search for including the project key</dd>
      </dl>
 
   <h3>Outputs</h3>
      <dl class="message-properties">
          <dt>payload
-             <span class="property-type">Array</span>
+             <span class="property-type">Object</span>
          </dt>
-         <dd> Output payload is an array of objects (one object for each directory or file entry)</dd>
-         <dt class="optional">filename <span class="property-type">string</span></dt>
-         <dd> full path and filename</dd>
-  	<dt class="optional">basename <span class="property-type">string</span></dt>
-         <dd> filename without path</dd>
-         <dt class="optional">lastmod <span class="property-type">string</span></dt>
-         <dd> Last modified data, e.g. "Sun, 29 Apr 2018 10:57:57 GMT"</dd>
-         <dt class="optional">size <span class="property-type">number</span></dt>
-         <dd> File size in Bytes</dd>
-         <dt class="optional">type <span class="property-type">string</span></dt>
-         <dd> Type of entry, e.g "file" or "directory"</dd>
-         <dt class="optional">mime <span class="property-type">string</span></dt>
-         <dd> Mime type, e.g. "image/svg+xml"</dd>
+         <dd> Output payload is a object have infomation of issues</dd>
      </dl>
 </script>

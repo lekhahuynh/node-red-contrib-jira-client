@@ -12,21 +12,25 @@ function copyFiles(srcDir, destDir, files) {
   );
 }
 
-function buildPackage() {
-  // compress files into tar.gz archive
-  targz.compress(
-    {
-      src: "tmp",
-      dest: "dist/node-red-contrib-jira-client.tgz",
-    },
-    function (err) {
-      if (err) {
-        console.error(err);
-      } else {
-        console.info("Build package success!");
+async function buildPackage() {
+  return new Promise((resolve, reject) => {
+    // compress files into tar.gz archive
+    targz.compress(
+      {
+        src: "tmp",
+        dest: "dist/node-red-contrib-jira-client.tgz",
+      },
+      function (err) {
+        if (err) {
+          console.error(err);
+          reject(err);
+        } else {
+          console.info("Build package success!");
+          resolve();
+        }
       }
-    }
-  );
+    );
+  });
 }
 
 async function copyPackage() {
@@ -34,7 +38,7 @@ async function copyPackage() {
   await fse.copy("icons", packageDir + "/icons");
   await fse.copy("src", packageDir + "/src");
 
-  await copyFiles("", packageDir, [
+  await copyFiles("./", packageDir, [
     ".gitignore",
     "CHANGELOG.md",
     "LICENSE",
@@ -56,7 +60,9 @@ async function main() {
   await clearTmp();
   await copyPackage();
   // Run build
-  buildPackage();
+  await buildPackage();
+
+  await fse.emptyDir("tmp");
 }
 
 main();

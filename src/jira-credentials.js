@@ -9,8 +9,8 @@ module.exports = function (RED) {
 
   RED.nodes.registerType("jira-credentials", JiraClientConfigNode, {
     credentials: {
-      user: { type: "text" },
-      pass: { type: "password" },
+      username: { type: "text" },
+      password: { type: "password" },
     },
   });
 };
